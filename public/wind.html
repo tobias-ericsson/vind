@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Malmö Seawind</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+</head>
+<body>
+<div class="flex-container">
+    <header>
+        <h1>Malmö Seawind</h1>
+
+        <p>Wind forecast for sailors, wind and kite surfers in the Malmö region</p>
+    </header>
+
+    <section>
+        <h1>Lomma Beach</h1>
+
+    </section>
+    <section>
+        <h1>Ribban Beach</h1>
+
+        <div class="wind-container">
+            <div>
+                <p>
+                    <svg viewBox="0 0 49.636 49.636" style="enable-background:new 0 0 49.636 49.636;" xml:space="preserve">
+                        <polygon style="fill:#1081E0;" points="23.001,27.245 0,23.39 49.636,0.61 25.636,49.026 "/>
+                    </svg>
+                </p>
+
+                <p>6 m/s</p>
+
+                <p>
+                    <svg width="50" height="50">
+                        <circle cx="25" cy="25" r="20" stroke="green" stroke-width="4" fill="yellow"/>
+                    </svg>
+                </p>
+
+                <p>Today</p>
+            </div>
+            <div>
+                <p><-</p>
+
+                <p>6 m/s</p>
+
+                <p>()</p>
+
+                <p>Mon</p>
+            </div>
+            <div>
+                <p>-></p>
+
+                <p>7 m/s</p>
+
+                <p>*</p>
+
+                <p>Tue</p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h1>Klagshamn</h1>
+    </section>
+
+    <footer>
+        <h1>Tobias Ericsson</h1>
+
+        <p>Sailor, windsurfer, kitesurfer and father</p>
+    </footer>
+</div>
+</body>
+<style scoped="">
+    html {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    header, footer {
+        text-align: center;
+        color: green;
+    }
+
+    section > h1, p {
+        padding: 0.5vh;
+    }
+
+    .flex-container {
+        display: -webkit-flex; /* Safari */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: space-between;
+        height: 100%;
+    }
+
+    .flex-container > section {
+        flex: 1;
+        border: 0.5vh solid #001f3f;
+    }
+
+    .wind-container {
+        display: -webkit-flex; /* Safari */
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: space-between;
+        height: 100%;
+    }
+</style>
+<script>
+    console.log('test');
+</script>
+</body>
+</html>
