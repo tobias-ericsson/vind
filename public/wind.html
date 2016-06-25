@@ -15,7 +15,8 @@
 
     <section>
         <h1>Lomma Beach</h1>
-
+        <div class="wind-container" id='lomma'>
+        </div>
     </section>
     <section>
         <h1>Ribban Beach</h1>
@@ -116,6 +117,88 @@
 </style>
 <script>
     console.log('test');
+    var latLongs = {
+        ribban: { lat: 55.586, long: 12.972 },
+        lomma: { lat: 55.586, long: 12.972 },
+        haboljung: { lat: 55.586, long: 12.972 },
+        klagshamn: { lat: 55.586, long: 12.972 }
+    };
+    var SMHI_URL = 'http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point';
+    console.log(latLongs);
+
+    function log(message) {
+        if (typeof console == "object") {
+            console.log(message + " " + arguments.callee.caller.name);
+        }
+    }
+
+    function get(url, successCallback) {
+        log("ajax: " + url);
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: url,
+            success: function (result) {
+                log("ajax: " + JSON.stringify(result));
+                successCallback(result);
+            },
+            error: function (xhr, status, error) {
+                log("ajax error: " + status + " " + JSON.stringify(error));
+            }
+        });
+    }
+
+    var extractWeatherList = function (result) {
+
+        var times = [];
+
+        for (var k = 0; k < result.timeSeries.length; k = k * 2 + 1) {
+            console.log(k);
+            times.push(extractUsefulInfo(result, k));
+        }
+        console.log(times);
+        return times;
+    };
+
+    var extractUsefulInfo = function (result, k) {
+        function param(number) {
+            return result.timeSeries[k].parameters[number].values[0];
+        }
+
+        var weather = {};
+        weather.time = result.timeSeries[k].validTime;
+        weather.windDirection = param(3);
+        weather.windSpeed = param(4);
+        weather.windGustSpeed = param(11);
+        weather.symbol = param(18);
+        return weather;
+    };
+
+    var addWeatherSectionsToDomElement = function (domId, weatherList) {
+        var place = document.getElementById(domId);
+        var htmlText = '';
+        var w;
+        for (var k = 0; k < weatherList.length; k++) {
+            w = weatherList[k];
+            htmlText = htmlText + '<div><p>'+
+                    w.windDirection+'</p><p>'+
+                    w.windSpeed+' ('+ w.windGustSpeed+') m/s</p><p>'+
+                    w.symbol+'</p><p>'+
+                    w.time+'</p></div>';
+        }
+        place.innerHTML = htmlText;
+    };
+
+    var lat = 55.586;
+    var long = 12.972;
+    get(SMHI_URL + '/lon/' + long + '/lat/' + lat + '/data.json', function (result) {
+        var weatherList = extractWeatherList(result);
+        addWeatherSectionsToDomElement('lomma', weatherList);
+
+
+    });
+
+
 </script>
 </body>
 </html>
