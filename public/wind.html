@@ -15,8 +15,23 @@
 
     <section>
         <h1>Lomma Beach</h1>
-        <div class="wind-container" id='lomma'>
-        </div>
+
+        <div class="wind-container" id='lomma'></div>
+    </section>
+    <section>
+        <h1>Habo Ljung Beach</h1>
+
+        <div class="wind-container" id='haboljung'></div>
+    </section>
+    <section>
+        <h1>Ribban Beach</h1>
+
+        <div class="wind-container" id='ribban'></div>
+    </section>
+    <section>
+        <h1>Klagshamn</h1>
+
+        <div class="wind-container" id='klagshamn'></div>
     </section>
     <section>
         <h1>Ribban Beach</h1>
@@ -59,10 +74,6 @@
             </div>
         </div>
     </section>
-    <section>
-        <h1>Klagshamn</h1>
-    </section>
-
     <footer>
         <h1>Tobias Ericsson</h1>
 
@@ -116,89 +127,102 @@
     }
 </style>
 <script>
-    console.log('test');
-    var latLongs = {
-        ribban: { lat: 55.586, long: 12.972 },
-        lomma: { lat: 55.586, long: 12.972 },
-        haboljung: { lat: 55.586, long: 12.972 },
-        klagshamn: { lat: 55.586, long: 12.972 }
-    };
-    var SMHI_URL = 'http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point';
-    console.log(latLongs);
+    var seawind = function () {
+        var latLongs = [
+            { name: 'lomma', lat: 55.680, long: 13.055 },
+            { name: 'haboljung', lat: 55.690, long: 13.051 },
+            { name: 'ribban', lat: 55.602, long: 12.956 },
+            { name: 'klagshamn', lat: 55.522, long: 12.889 }
+        ];
 
-    function log(message) {
-        if (typeof console == "object") {
-            console.log(message + " " + arguments.callee.caller.name);
-        }
-    }
+        var SMHI_URL = 'http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point';
 
-    function get(url, successCallback) {
-        log("ajax: " + url);
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: url,
-            success: function (result) {
-                log("ajax: " + JSON.stringify(result));
-                successCallback(result);
-            },
-            error: function (xhr, status, error) {
-                log("ajax error: " + status + " " + JSON.stringify(error));
+        function log(message) {
+            if (typeof console == "object") {
+                console.log(arguments.callee.caller.name + " " + message);
             }
-        });
-    }
-
-    var extractWeatherList = function (result) {
-
-        var times = [];
-
-        for (var k = 0; k < result.timeSeries.length; k = k * 2 + 1) {
-            console.log(k);
-            times.push(extractUsefulInfo(result, k));
-        }
-        console.log(times);
-        return times;
-    };
-
-    var extractUsefulInfo = function (result, k) {
-        function param(number) {
-            return result.timeSeries[k].parameters[number].values[0];
         }
 
-        var weather = {};
-        weather.time = result.timeSeries[k].validTime;
-        weather.windDirection = param(3);
-        weather.windSpeed = param(4);
-        weather.windGustSpeed = param(11);
-        weather.symbol = param(18);
-        return weather;
-    };
-
-    var addWeatherSectionsToDomElement = function (domId, weatherList) {
-        var place = document.getElementById(domId);
-        var htmlText = '';
-        var w;
-        for (var k = 0; k < weatherList.length; k++) {
-            w = weatherList[k];
-            htmlText = htmlText + '<div><p>'+
-                    w.windDirection+'</p><p>'+
-                    w.windSpeed+' ('+ w.windGustSpeed+') m/s</p><p>'+
-                    w.symbol+'</p><p>'+
-                    w.time+'</p></div>';
+        function get(url, id, successCallback) {
+            log("ajax: " + url);
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: url,
+                success: function (result) {
+                    //log("ajax: " + JSON.stringify(result));
+                    successCallback(id, result);
+                },
+                error: function (xhr, status, error) {
+                    log("ajax error: " + status + " " + JSON.stringify(error));
+                }
+            });
         }
-        place.innerHTML = htmlText;
-    };
 
-    var lat = 55.586;
-    var long = 12.972;
-    get(SMHI_URL + '/lon/' + long + '/lat/' + lat + '/data.json', function (result) {
-        var weatherList = extractWeatherList(result);
-        addWeatherSectionsToDomElement('lomma', weatherList);
+        var extractWeatherList = function (result) {
+            var times = [];
+            for (var k = 0; k < result.timeSeries.length; k = Math.floor(k * 1.4) + 2) {
+                //log(k);
+                times.push(extractUsefulInfo(result, k));
+            }
+            //log(times);
+            return times;
+        };
 
+        var extractUsefulInfo = function (result, k) {
+            function param(number) {
+                return result.timeSeries[k].parameters[number].values[0];
+            }
 
-    });
+            var weather = {};
+            weather.time = result.timeSeries[k].validTime;
+            weather.windDirection = param(3);
+            weather.windSpeed = param(4);
+            weather.windGustSpeed = param(11);
+            weather.symbol = param(18);
+            return weather;
+        };
 
+        var addWeatherSectionsToDomElement = function (domId, weatherList) {
+            log(domId);
+            var place = document.getElementById(domId);
+            if (place) {
+                var htmlText = '';
+                var w;
+                for (var k = 0; k < weatherList.length; k++) {
+                    w = weatherList[k];
+                    htmlText = htmlText + '<div><p>' +
+                            w.windSpeed + ' (' + w.windGustSpeed + ') m/s</p><p>' +
+                            w.windDirection + '</p><p>' +
+                        //w.symbol + '</p><p>' +
+                            formatDate(w.time) + '</p></div>';
+                }
+                place.innerHTML = htmlText;
+            }
+        };
 
+        var formatDate = function (dateString) {
+            var today = new Date();
+            var date = new Date(dateString);
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var time = dateString.slice(11, 16);
+
+            if (day == today.getDate()) {
+                return time;
+            } else {
+                return time + ' ' + day + '/' + month;
+            }
+        };
+
+        for (var k = 0; k < latLongs.length; k++) {
+            get(SMHI_URL + '/lon/' + latLongs[k].long + '/lat/' + latLongs[k].lat + '/data.json', latLongs[k].name,
+                    function (id, result) {
+                        var weatherList = extractWeatherList(result);
+                        addWeatherSectionsToDomElement(id, weatherList);
+                    });
+        }
+    }();
 </script>
 </body>
 </html>
