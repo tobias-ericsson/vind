@@ -1,0 +1,54 @@
+<html>
+<body>
+<h1>test</h1>
+
+<style>
+    circle {
+    stroke: #006600;
+    fill  : #00cc00;
+    }
+</style>
+
+<svg viewBox="0 0 1000 400" preserveAspectRatio="xMinYMin slice" class="graph" height="300" width="700" style="border: 1px solid black">
+    <title id="title">A line chart showing some information</title>
+
+    <rect x="90" y="120" width="500" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+
+    <g class="grid x-grid" style="stroke:rgb(255,0,0);stroke-width:2">
+        <line x1="90" x2="90" y1="100" y2="370"></line>
+    </g>
+    <g class="grid y-grid" style="stroke:rgb(255,0,0);stroke-width:2">
+        <line x1="90" x2="650" y1="370" y2="370"></line>
+    </g>
+
+    <g class="labels x-labels">
+        <text x="100" y="400">10:00</text>
+        <text x="200" y="400">12:00</text>
+        <text x="300" y="400">14:00</text>
+        <text x="400" y="400">10:00 29/7</text>
+        <text x="500" y="400">12:00 29/7</text>
+        <text x="400" y="440" class="label-title">time</text>
+    </g>
+    <g class="labels y-labels">
+        <text x="70" y="100">14</text>
+        <text x="70" y="130">12</text>
+        <text x="70" y="160">10</text>
+        <text x="75" y="190">8</text>
+        <text x="75" y="220">6</text>
+        <text x="75" y="250">4</text>
+        <text x="75" y="373">0</text>
+        <text x="40" y="200" class="label-title">m/s</text>
+    </g>
+
+    <g>
+        <polyline points="100,250 200,220 300,190 400,190 500,140"
+                  style="fill:none;stroke:black;stroke-width:3"/>
+    </g>
+
+    <text x="15" y="15" fill="red">Malmö seawind</text>
+
+
+</svg>
+</body>
+
+</html>

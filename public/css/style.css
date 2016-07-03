@@ -1,0 +1,352 @@
+
+body {
+    font-family: "Warnock Pro", "Goudy Old Style", "Palatino", "Book Antiqua", Georgia, Baskerville, Arial, sans-serif;
+    background-color: #342a1c;
+    font-style: italic;
+}
+
+
+
+header,
+.article,
+#menu-nav,
+footer {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0px 0px 8px 1px rgba(242, 162, 102, 0.5);
+    -moz-box-shadow: inset 0px 0px 8px 1px rgba(242, 162, 102, 0.5);
+    box-shadow: inset 0px 0px 8px 1px rgba(242, 162, 102, 0.5);
+    border-bottom: 2px outset #201000;
+    background-color: #FFEBCD;
+    color: #8B4513;
+    /*border-right: 4px outset #000000;*/
+
+    /*
+        -webkit-box-shadow: 3px 3px 2px 0px rgba(41,33,7,0.7);
+        -moz-box-shadow: 3px 3px 2px 0px rgba(41,33,7,0.7);
+        box-shadow: 4px 4px 1px 0px rgba(28,20,0,0.7);*/
+    background: rgba(255, 235, 205, 1);
+    background: linear-gradient(142deg, rgba(255, 235, 205, 1) 0%, rgba(255, 235, 205, 1) 72%, rgba(242, 222, 190, 1) 98%, rgba(232, 202, 180, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffebcd', endColorstr='#ad8d5e', GradientType=1);
+}
+
+section,
+header,
+#menu-nav {
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+#menu-nav p {
+    margin: 1px 1px 1px 20px;
+    font-size: 1.2em;
+    padding: 0px;
+}
+
+#menu-nav a {
+    color: black;
+    font-style: italic;
+}
+
+#menu-nav a:hover {
+    color: blue;
+    text-decoration: none;
+    border-bottom: 0px solid;
+}
+
+#menu-nav h2 {
+    margin-bottom: 2px;
+    padding: 0px;
+    cursor: pointer;
+}
+
+#menu-nav h2:hover {
+    color:blue;
+}
+
+#menu-nav {
+    min-height: 200px;
+    max-height: 900px;
+    overflow-y: scroll;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+#menu-nav::-webkit-scrollbar {
+    display: none;
+}
+
+header {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    padding: 1%;
+    /*margin-left: 69%;*/
+}
+
+header a {
+    text-decoration: none;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 1.6rem;
+    margin: 4px;
+    color: #292107;
+    word-spacing: 4px;
+}
+
+header h2 {
+    font-size: 1rem;
+    margin: 4px;
+    color: saddlebrown;
+    word-spacing: 4px;
+}
+
+#header {
+    background-color: #342a1c;
+    width: 100%;
+    height: 10px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 2;
+}
+
+#menu-nav {
+    /*margin-left: 69%;*/
+    margin-top: 5px;
+    padding: 10px;
+}
+
+#content-section {
+
+}
+
+
+
+article {
+    /*width: 90%;*/
+    padding-top: 5px;
+}
+
+.article {
+    margin-top: 5px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+article h1 {
+    color: #292107;
+    font-size: 1.6rem;
+}
+
+article h2 {
+    color: saddlebrown;
+    font-size: 1.2rem;
+}
+
+article p {
+    font-size: 1rem;
+    color: saddlebrown;
+}
+
+
+footer {
+    color: #aeaeae;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 1%;
+}
+
+footer a {
+    text-decoration: none;
+    text-align: center;
+}
+
+a:link, a:visited {
+    color: #057025;
+    text-decoration: none;
+    border-bottom: none;
+
+}
+
+article {
+    font-style: italic;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
+}
+
+article a,p,li {
+    font-style: normal;
+}
+
+a:hover, a:active {
+    text-decoration: none;
+    border-bottom: 1px solid;
+}
+
+/* Lists
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+ul {
+    list-style: square inside;
+}
+
+ol {
+    list-style: decimal inside;
+}
+
+ol, ul {
+    padding-left: 0;
+    margin-top: 0;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+    margin: 1.5rem 0 1.5rem 3rem;
+    font-size: 100%;
+}
+
+li {
+    margin-bottom: 1rem;
+}
+
+/* Code
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+pre {
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-style: normal;
+    padding: .2rem .5rem;
+    margin: 0 .2rem;
+    font-size: 90%;
+    background: #F1F1F1;
+    border: 1px solid #E1E1E1;
+    border-radius: 4px;
+}
+
+/*
+code {
+    padding: .2rem .5rem;
+    margin: 0 .2rem;
+    font-size: 90%;
+    /* white-space: nowrap; */
+    /*background: #F1F1F1;
+    border: 1px solid #E1E1E1;
+    border-radius: 4px;*/ /*
+}*/
+/*
+pre > code {
+    display: block;
+    padding: 1rem 1.5rem;
+    white-space: pre;
+}*/
+
+/* Tables
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+th:first-child,
+td:first-child {
+    padding-left: 0;
+}
+
+th:last-child,
+td:last-child {
+    padding-right: 0;
+}
+
+/* Media Queries
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/*
+Note: The best way to structure the use of media queries is to create the queries
+near the relevant code. For example, if you wanted to change the styles for buttons
+on small devices, paste the mobile query code up in the buttons section and style it
+there.
+*/
+
+#content {
+    margin: 0;
+    /*position: fixed;*/
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    /*background-color: green;*/
+    /*width: 98%;*/
+}
+
+nav {
+    padding-top: 10px;
+    /*visibility: hidden;*/
+}
+
+
+
+/* Larger than mobile */
+@media (min-width: 500px) {
+    #content {
+        margin: 0px 0 0 1%;
+        width: 64%;
+    }
+
+    nav {
+        padding: 0;
+        margin: 0px 1% 0 0;
+        position: fixed;
+        top: 10px;
+        right: 0px;
+        bottom: 0px;
+        /*background-color: #ffff00;*/
+        width: 34%;
+        visibility: visible;
+    }
+}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+    /*
+    #content {
+        margin: 5px 0 0 10%;
+        width: 70%;
+    }
+
+    nav {
+        margin: 5px 1% 0 0;
+        width: 28%;
+    }*/
+}
+
+/* Larger than desktop */
+@media (min-width: 1100px) {
+    #content {
+        margin-left: 12%;
+        width: 50%;
+    }
+
+    nav {
+        margin-right: 12%;
+        width: 26%;
+    }
+}
+
+/* Larger than Desktop HD */
+@media (min-width: 1370px) {
+    #content {
+        margin-left: 20%;
+        width: 40%;
+    }
+
+    nav {
+        margin-right: 20%;
+        width: 20%;
+    }
+}
